@@ -1,4 +1,4 @@
-﻿namespace DesignPatternsDemo.Strategy.After.Services;
+namespace DesignPatternsDemo.Strategy.Common;
 
 public class ValidationResult
 {
@@ -14,3 +14,4 @@ public class ValidationResult
 	public static ValidationResult Success() => new(true);
 	public static ValidationResult Failure(string message) => new(false, message);
 }
+
