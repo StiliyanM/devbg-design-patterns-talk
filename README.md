@@ -23,3 +23,7 @@ dotnet run
 
 See [Strategy/README.md](DesignPatternsDemo/Strategy/README.md) for business requirements and implementation details.
 
+### Chain of Responsibility Pattern
+
+See [ChainOfResponsibility/README.md](DesignPatternsDemo/ChainOfResponsibility/README.md) for business requirements and implementation details.
+
