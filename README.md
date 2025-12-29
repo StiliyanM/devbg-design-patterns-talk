@@ -27,3 +27,7 @@ See [Strategy/README.md](DesignPatternsDemo/Strategy/README.md) for business req
 
 See [ChainOfResponsibility/README.md](DesignPatternsDemo/ChainOfResponsibility/README.md) for business requirements and implementation details.
 
+### Specification Pattern
+
+See [Specification/README.md](DesignPatternsDemo/Specification/README.md) for business requirements and implementation details.
+
