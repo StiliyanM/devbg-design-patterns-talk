@@ -1,36 +1,10 @@
 using DesignPatternsDemo.Strategy.Models;
-using DesignPatternsDemo.Strategy.Common;
 
 namespace DesignPatternsDemo.Strategy.After.Strategies;
 
 public class AdyenPaymentStrategy : IPaymentProviderStrategy
 {
     public PaymentProvider Provider => PaymentProvider.Adyen;
-
-    public ValidationResult Validate(PaymentRequest request)
-    {
-        if (request.Amount <= 0)
-        {
-            return ValidationResult.Failure("Amount must be greater than zero");
-        }
-
-        if (string.IsNullOrWhiteSpace(request.Currency))
-        {
-            return ValidationResult.Failure("Currency is required");
-        }
-
-        if (request.Currency is not ("USD" or "EUR" or "GBP"))
-        {
-            return ValidationResult.Failure("Adyen only supports USD, EUR, and GBP");
-        }
-
-        if (request is { IsRefund: true, Amount: > 5000 })
-        {
-            return ValidationResult.Failure("Refunds over $5,000 require manual approval");
-        }
-
-        return ValidationResult.Success();
-    }
 
     public decimal CalculateFee(PaymentRequest request)
     {

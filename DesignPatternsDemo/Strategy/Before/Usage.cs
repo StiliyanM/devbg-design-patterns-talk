@@ -54,30 +54,22 @@ public static class Usage
             Console.WriteLine($"  Country: {request.Country}");
             Console.WriteLine($"  IsRefund: {request.IsRefund}");
 
-            var validation = service.Validate(request);
-            if (!validation.IsValid)
+            try
             {
-                Console.WriteLine($"  ❌ Validation failed: {validation.ErrorMessage}");
+                var fee = service.CalculateFee(request);
+                Console.WriteLine($"  ✅ Fee: {fee} {request.Currency}");
             }
-            else
+            catch (Exception ex)
             {
-                try
-                {
-                    var fee = service.CalculateFee(request);
-                    Console.WriteLine($"  ✅ Fee: {fee} {request.Currency}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"  ❌ Error: {ex.Message}");
-                }
+                Console.WriteLine($"  ❌ Error: {ex.Message}");
             }
 
             Console.WriteLine();
         }
 
         Console.WriteLine("\n=== Issues with this approach ===");
-        Console.WriteLine("• Adding a new provider requires modifying Validate() and CalculateFee()");
-        Console.WriteLine("• Provider-specific logic is scattered across multiple methods");
+        Console.WriteLine("• Adding a new provider requires modifying CalculateFee()");
+        Console.WriteLine("• Provider-specific logic is hardcoded with if/else statements");
         Console.WriteLine("• Risk of breaking existing providers when adding new ones");
         Console.WriteLine("• Difficult to test provider logic in isolation");
     }

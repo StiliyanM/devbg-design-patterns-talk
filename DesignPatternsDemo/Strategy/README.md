@@ -2,7 +2,9 @@
 
 ## Business Requirements
 
-This component processes payment requests using different payment providers. Each provider has unique fee calculation rules and validation requirements.
+This component calculates fees for payment requests using different payment providers. Each provider has unique fee calculation algorithms.
+
+**Note:** This example focuses on fee calculation only. Validation is handled separately using the Specification pattern (see Specification/README.md).
 
 ### Payment Request
 
@@ -22,11 +24,10 @@ A `PaymentRequest` contains:
 - No fees charged on refunds
 - Fees rounded to 2 decimal places using standard rounding
 
-**Validation Rules:**
-- Amount must be greater than zero
-- Currency is required
-- Blocks transactions from: CU, IR, KP, SY
-- Refunds over $10,000 require manual approval
+**Fee Calculation:**
+- 2.9% of amount + $0.30 fixed fee
+- No fees charged on refunds
+- Fees rounded to 2 decimal places using standard rounding
 
 #### Adyen
 
@@ -40,11 +41,15 @@ A `PaymentRequest` contains:
 - No fees charged on refunds
 - Fees rounded to 2 decimal places
 
-**Validation Rules:**
-- Amount must be greater than zero
-- Currency is required
-- Only supports USD, EUR, and GBP
-- Refunds over $5,000 require manual approval
+**Fee Calculation:**
+- Percentage fee varies by currency:
+  - USD: 2.5%
+  - EUR: 2.4%
+  - GBP: 2.6%
+- $0.25 fixed fee
+- Minimum fee of $0.50
+- No fees charged on refunds
+- Fees rounded to 2 decimal places
 
 #### LocalBank
 
@@ -53,11 +58,10 @@ A `PaymentRequest` contains:
 - Fees rounded up to nearest cent
 - Does not support refunds
 
-**Validation Rules:**
-- Amount must be greater than zero
-- Currency is required
-- Only supports US transactions (Country must be "US")
-- Refunds are not supported
+**Fee Calculation:**
+- $2.00 flat fee + 1.5% of amount
+- Fees rounded up to nearest cent
+- Does not support refunds (throws exception)
 
 ## Implementation Approaches
 

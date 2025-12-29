@@ -55,22 +55,14 @@ public static class Usage
             Console.WriteLine($"  Country: {request.Country}");
             Console.WriteLine($"  IsRefund: {request.IsRefund}");
 
-            var validation = service.Validate(request);
-            if (!validation.IsValid)
+            try
             {
-                Console.WriteLine($"  ❌ Validation failed: {validation.ErrorMessage}");
+                var fee = service.CalculateFee(request);
+                Console.WriteLine($"  ✅ Fee: {fee} {request.Currency}");
             }
-            else
+            catch (Exception ex)
             {
-                try
-                {
-                    var fee = service.CalculateFee(request);
-                    Console.WriteLine($"  ✅ Fee: {fee} {request.Currency}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"  ❌ Error: {ex.Message}");
-                }
+                Console.WriteLine($"  ❌ Error: {ex.Message}");
             }
 
             Console.WriteLine();
