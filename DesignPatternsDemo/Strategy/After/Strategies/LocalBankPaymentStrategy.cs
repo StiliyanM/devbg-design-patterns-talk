@@ -1,8 +1,9 @@
+using DesignPatternsDemo.Strategy.After.Strategies.Interfaces;
 using DesignPatternsDemo.Strategy.Models;
 
 namespace DesignPatternsDemo.Strategy.After.Strategies;
 
-public class LocalBankPaymentStrategy : IPaymentProviderStrategy
+public class LocalBankPaymentStrategy : ILocalBankPaymentStrategy
 {
     public PaymentProvider Provider => PaymentProvider.LocalBank;
 

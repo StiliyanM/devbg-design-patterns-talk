@@ -1,6 +1,6 @@
 using DesignPatternsDemo.Strategy.Models;
 
-namespace DesignPatternsDemo.Strategy.After.Strategies;
+namespace DesignPatternsDemo.Strategy.After.Strategies.Interfaces;
 
 public interface IPaymentProviderStrategy
 {

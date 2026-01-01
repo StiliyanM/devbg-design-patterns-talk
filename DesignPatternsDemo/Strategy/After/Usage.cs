@@ -1,4 +1,6 @@
 using DesignPatternsDemo.Strategy.After.Services;
+using DesignPatternsDemo.Strategy.After.Strategies;
+using DesignPatternsDemo.Strategy.After.Strategies.Interfaces;
 using DesignPatternsDemo.Strategy.Models;
 
 namespace DesignPatternsDemo.Strategy.After;
@@ -9,7 +11,13 @@ public static class Usage
     {
         Console.WriteLine("=== Payment Fee Calculation - AFTER (Strategy Pattern) ===\n");
 
-        var strategyFactory = new PaymentProviderStrategyFactory();
+        // Create strategies (in real app, these would be injected via DI)
+        IStripePaymentStrategy stripe = new StripePaymentStrategy();
+        IAdyenPaymentStrategy adyen = new AdyenPaymentStrategy();
+        ILocalBankPaymentStrategy localBank = new LocalBankPaymentStrategy();
+
+        // Create factory with dependency injection
+        var strategyFactory = new PaymentProviderStrategyFactory(stripe, adyen, localBank);
         var service = new PaymentFeeService(strategyFactory);
 
         var testCases = new[]

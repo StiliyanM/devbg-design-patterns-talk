@@ -1,15 +1,19 @@
 using DesignPatternsDemo.Strategy.Models;
 using DesignPatternsDemo.Strategy.After.Strategies;
+using DesignPatternsDemo.Strategy.After.Strategies.Interfaces;
 
 namespace DesignPatternsDemo.Strategy.After.Services;
 
-public class PaymentProviderStrategyFactory
+public class PaymentProviderStrategyFactory(
+    IStripePaymentStrategy stripe,
+    IAdyenPaymentStrategy adyen,
+    ILocalBankPaymentStrategy localBank)
 {
     private readonly Dictionary<PaymentProvider, IPaymentProviderStrategy> _strategies = new()
     {
-        { PaymentProvider.Stripe, new StripePaymentStrategy() },
-        { PaymentProvider.Adyen, new AdyenPaymentStrategy() },
-        { PaymentProvider.LocalBank, new LocalBankPaymentStrategy() }
+        { PaymentProvider.Stripe, stripe },
+        { PaymentProvider.Adyen, adyen },
+        { PaymentProvider.LocalBank, localBank }
     };
 
     public IPaymentProviderStrategy Create(PaymentProvider provider) => 

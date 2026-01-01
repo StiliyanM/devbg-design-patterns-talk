@@ -1,8 +1,9 @@
+using DesignPatternsDemo.Strategy.After.Strategies.Interfaces;
 using DesignPatternsDemo.Strategy.Models;
 
 namespace DesignPatternsDemo.Strategy.After.Strategies;
 
-public class StripePaymentStrategy : IPaymentProviderStrategy
+public class StripePaymentStrategy : IStripePaymentStrategy
 {
     public PaymentProvider Provider => PaymentProvider.Stripe;
 

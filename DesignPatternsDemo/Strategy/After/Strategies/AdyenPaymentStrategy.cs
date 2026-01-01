@@ -1,8 +1,9 @@
+using DesignPatternsDemo.Strategy.After.Strategies.Interfaces;
 using DesignPatternsDemo.Strategy.Models;
 
 namespace DesignPatternsDemo.Strategy.After.Strategies;
 
-public class AdyenPaymentStrategy : IPaymentProviderStrategy
+public class AdyenPaymentStrategy : IAdyenPaymentStrategy
 {
     public PaymentProvider Provider => PaymentProvider.Adyen;
 
