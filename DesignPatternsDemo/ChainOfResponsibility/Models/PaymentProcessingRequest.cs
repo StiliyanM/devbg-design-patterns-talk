@@ -10,12 +10,3 @@ public class PaymentProcessingRequest
     public bool RequiresFraudCheck { get; set; }
     public bool RequiresComplianceCheck { get; set; }
 }
-
-public class PaymentProcessingResult
-{
-    public bool IsApproved { get; set; }
-    public string RejectionReason { get; set; }
-    public decimal CalculatedFee { get; set; }
-    public List<string> ProcessingSteps { get; set; } = [];
-}
-

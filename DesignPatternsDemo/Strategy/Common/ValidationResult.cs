@@ -3,9 +3,9 @@ namespace DesignPatternsDemo.Strategy.Common;
 public class ValidationResult
 {
 	public bool IsValid { get; private set; }
-	public string? ErrorMessage { get; private set; }
+	public string ErrorMessage { get; private set; }
 
-	private ValidationResult(bool isValid, string? errorMessage = null)
+	private ValidationResult(bool isValid, string errorMessage = null)
 	{
 		IsValid = isValid;
 		ErrorMessage = errorMessage;
