@@ -3,17 +3,17 @@ using DesignPatternsDemo.Strategy.Models;
 
 namespace DesignPatternsDemo.Strategy.After.Strategies;
 
-public class LocalBankPaymentStrategy : ILocalBankPaymentStrategy
+public class LocalBankPaymentStrategy : BasePaymentStrategy, ILocalBankPaymentStrategy
 {
-    public PaymentProvider Provider => PaymentProvider.LocalBank;
+    public override PaymentProvider Provider => PaymentProvider.LocalBank;
 
-    public decimal CalculateFee(PaymentRequest request)
+    protected override decimal GetRefundFee()
     {
-        if (request.IsRefund)
-        {
-            throw new InvalidOperationException("LocalBank does not support refunds");
-        }
+        throw new InvalidOperationException("LocalBank does not support refunds");
+    }
 
+    protected override decimal CalculateRegularFee(PaymentRequest request)
+    {
         // LocalBank has a flat fee structure
         var flatFee = 2.00m;
         var percentageFee = request.Amount * 0.015m; // 1.5%

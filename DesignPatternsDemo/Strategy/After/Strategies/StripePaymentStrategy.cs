@@ -3,17 +3,12 @@ using DesignPatternsDemo.Strategy.Models;
 
 namespace DesignPatternsDemo.Strategy.After.Strategies;
 
-public class StripePaymentStrategy : IStripePaymentStrategy
+public class StripePaymentStrategy : BasePaymentStrategy, IStripePaymentStrategy
 {
-    public PaymentProvider Provider => PaymentProvider.Stripe;
+    public override PaymentProvider Provider => PaymentProvider.Stripe;
 
-    public decimal CalculateFee(PaymentRequest request)
+    protected override decimal CalculateRegularFee(PaymentRequest request)
     {
-        if (request.IsRefund)
-        {
-            return 0; // Stripe doesn't charge fees on refunds
-        }
-
         var baseFee = request.Amount * 0.029m; // 2.9%
         var fixedFee = 0.30m;
         var totalFee = baseFee + fixedFee;

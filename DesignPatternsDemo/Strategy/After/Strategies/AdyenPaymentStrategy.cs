@@ -3,17 +3,12 @@ using DesignPatternsDemo.Strategy.Models;
 
 namespace DesignPatternsDemo.Strategy.After.Strategies;
 
-public class AdyenPaymentStrategy : IAdyenPaymentStrategy
+public class AdyenPaymentStrategy : BasePaymentStrategy, IAdyenPaymentStrategy
 {
-    public PaymentProvider Provider => PaymentProvider.Adyen;
+    public override PaymentProvider Provider => PaymentProvider.Adyen;
 
-    public decimal CalculateFee(PaymentRequest request)
+    protected override decimal CalculateRegularFee(PaymentRequest request)
     {
-        if (request.IsRefund)
-        {
-            return 0; // Adyen doesn't charge fees on refunds
-        }
-
         var feePercentage = request.Currency switch
         {
             "USD" => 0.025m, // 2.5%
