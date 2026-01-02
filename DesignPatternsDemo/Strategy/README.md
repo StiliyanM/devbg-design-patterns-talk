@@ -4,8 +4,6 @@
 
 This component calculates fees for payment requests using different payment providers. Each provider has unique fee calculation algorithms.
 
-**Note:** This example focuses on fee calculation only. Validation is handled separately using the Specification pattern (see Specification/README.md).
-
 ### Payment Request
 
 A `PaymentRequest` contains:
@@ -24,22 +22,7 @@ A `PaymentRequest` contains:
 - No fees charged on refunds
 - Fees rounded to 2 decimal places using standard rounding
 
-**Fee Calculation:**
-- 2.9% of amount + $0.30 fixed fee
-- No fees charged on refunds
-- Fees rounded to 2 decimal places using standard rounding
-
 #### Adyen
-
-**Fee Calculation:**
-- Percentage fee varies by currency:
-  - USD: 2.5%
-  - EUR: 2.4%
-  - GBP: 2.6%
-- $0.25 fixed fee
-- Minimum fee of $0.50
-- No fees charged on refunds
-- Fees rounded to 2 decimal places
 
 **Fee Calculation:**
 - Percentage fee varies by currency:
