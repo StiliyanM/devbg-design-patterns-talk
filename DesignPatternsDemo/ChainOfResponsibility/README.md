@@ -41,17 +41,15 @@ A payment goes through several processing steps:
 
 ### Before: Rigid Flow
 
-The `Before` implementation uses a single method with hardcoded steps:
-- Steps are executed in a fixed order
-- Conditional steps use if statements
-- Early returns for failures
-- All logic in one place
+The `Before` implementation uses a single method with hardcoded steps.
 
 **Issues:**
-- Flow is rigid and hard to modify
-- Adding a new step requires modifying the main method
-- Reordering steps is risky
+- Flow is rigid - steps are hardcoded in fixed order
+- Adding a new step requires modifying `ProcessPayment()` method
+- Reordering steps is risky and error-prone
 - Method grows and becomes harder to reason about
+- Conditional steps (fraud/compliance) add complexity
+- Difficult to test individual steps in isolation
 
 ### After: Chain of Responsibility
 
@@ -62,10 +60,11 @@ The `After` implementation uses the Chain of Responsibility pattern:
 - Processing is composed, not hardcoded
 
 **Benefits:**
-- Steps are easy to add or remove
-- Order can be changed safely
-- Logic is easier to test in isolation
-- Flow is easier to understand
+- Steps are easy to add or remove - just modify the chain
+- Order can be changed safely - reorder handlers in chain
+- Logic is easier to test - each handler can be tested in isolation
+- Flow is easier to understand - each handler has one responsibility
+- Conditional steps are handled by the handler itself
 
 ## When NOT to Use Chain of Responsibility
 

@@ -42,30 +42,27 @@ A `PaymentRequest` contains:
 
 ### Before: Inline Validation Logic
 
-The `Before` implementation uses inline if statements:
-- Rules are duplicated across providers
+The `Before` implementation uses inline if statements.
+
+**Issues:**
+- Rules are duplicated across providers (Amount > 0, Currency required)
 - Rules are tangled with provider logic
 - Hard to reuse rules in different contexts
 - Difficult to test individual rules in isolation
-
-**Issues:**
-- Rules like "Amount > 0" and "Currency required" are repeated for each provider
-- Adding a new rule requires modifying multiple places
+- Adding new rules requires modifying multiple places
 - No way to compose or combine rules
 
 ### After: Specification Pattern
 
-The `After` implementation uses the Specification pattern:
-- Each rule is a separate specification class
-- Specifications can be composed (And, Or, Not)
-- Rules are reusable across providers
-- Each rule is testable in isolation
+The `After` implementation uses the Specification pattern.
 
 **Benefits:**
-- Common rules (Amount > 0, Currency required) are defined once
+- Rules are reusable across providers
+- Rules can be composed (And, Or, Not)
+- Each rule is testable in isolation
 - Provider validation is a clear composition of rules
 - Easy to add new rules without modifying existing code
-- Rules can be combined in different ways for different contexts
+- Common rules (Amount > 0, Currency required) are defined once
 
 ## Specifications
 

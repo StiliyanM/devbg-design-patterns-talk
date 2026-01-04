@@ -39,11 +39,6 @@ A `PaymentRequest` contains:
 **Fee Calculation:**
 - $2.00 flat fee + 1.5% of amount
 - Fees rounded up to nearest cent
-- Does not support refunds
-
-**Fee Calculation:**
-- $2.00 flat fee + 1.5% of amount
-- Fees rounded up to nearest cent
 - Does not support refunds (throws exception)
 
 ## Implementation Approaches
@@ -51,14 +46,22 @@ A `PaymentRequest` contains:
 ### Before: Branching Logic
 
 The `Before` implementation uses if/else statements to handle provider-specific logic. This approach:
-- Requires modifying existing code when adding new providers
-- Scatters provider logic across multiple methods
-- Makes it difficult to test provider behavior in isolation
+
+**Issues:**
+- Adding a new provider requires modifying `CalculateFee()` method
+- Provider-specific logic is hardcoded with if/else statements
+- Risk of breaking existing providers when adding new ones
+- Difficult to test provider logic in isolation
+- Provider logic is scattered across multiple methods
 
 ### After: Strategy Pattern
 
 The `After` implementation uses the Strategy pattern to encapsulate provider-specific behavior. Each provider has its own strategy class implementing a common interface. This approach:
-- Allows adding new providers without modifying existing code
-- Isolates provider logic for easy testing
-- Keeps orchestration logic simple and stable
+
+**Benefits:**
+- New providers can be added by creating a new strategy class
+- No need to modify existing code when adding providers
+- Provider logic is isolated and easily testable
+- Service orchestration logic is simple and stable
+- Each provider's behavior is self-contained
 
