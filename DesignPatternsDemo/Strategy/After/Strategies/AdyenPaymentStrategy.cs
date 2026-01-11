@@ -18,11 +18,11 @@ public class AdyenPaymentStrategy : BasePaymentStrategy, IAdyenPaymentStrategy
         };
 
         var baseFee = request.Amount * feePercentage;
-        var fixedFee = 0.25m;
+        const decimal fixedFee = 0.25m;
         var totalFee = baseFee + fixedFee;
 
         // Adyen has a minimum fee of $0.50
-        var minimumFee = 0.50m;
+        const decimal minimumFee = 0.50m;
         if (totalFee < minimumFee)
         {
             totalFee = minimumFee;

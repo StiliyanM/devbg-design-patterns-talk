@@ -7,15 +7,8 @@ public abstract class BasePaymentStrategy : IPaymentProviderStrategy
 {
     public abstract PaymentProvider Provider { get; }
 
-    public decimal CalculateFee(PaymentRequest request)
-    {
-        if (request.IsRefund)
-        {
-            return GetRefundFee();
-        }
-
-        return CalculateRegularFee(request);
-    }
+    public decimal CalculateFee(PaymentRequest request) => 
+        request.IsRefund ? GetRefundFee() : CalculateRegularFee(request);
 
     protected virtual decimal GetRefundFee()
     {

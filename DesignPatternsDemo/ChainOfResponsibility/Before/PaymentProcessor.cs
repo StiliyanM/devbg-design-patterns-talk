@@ -94,11 +94,11 @@ public class PaymentProcessor
         return result;
     }
 
-    private decimal CalculateFee(PaymentProcessingRequest request)
+    private static decimal CalculateFee(PaymentProcessingRequest request)
     {
         // Simple fee calculation: 2.5% + $0.30
         var percentageFee = request.Amount * 0.025m;
-        var fixedFee = 0.30m;
+        const decimal fixedFee = 0.30m;
         return Math.Round(percentageFee + fixedFee, 2);
     }
 }

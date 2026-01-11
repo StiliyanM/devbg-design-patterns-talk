@@ -15,7 +15,7 @@ public class LocalBankPaymentStrategy : BasePaymentStrategy, ILocalBankPaymentSt
     protected override decimal CalculateRegularFee(PaymentRequest request)
     {
         // LocalBank has a flat fee structure
-        var flatFee = 2.00m;
+        const decimal flatFee = 2.00m;
         var percentageFee = request.Amount * 0.015m; // 1.5%
         var totalFee = flatFee + percentageFee;
 

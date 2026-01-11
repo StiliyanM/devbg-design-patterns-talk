@@ -44,14 +44,11 @@ internal class OrSpecification<T>(ISpecification<T> left, ISpecification<T> righ
 
     public string GetFailureMessage(T candidate)
     {
-        if (left.IsSatisfiedBy(candidate))
+        if (left.IsSatisfiedBy(candidate) || right.IsSatisfiedBy(candidate))
         {
             return string.Empty;
         }
-        if (right.IsSatisfiedBy(candidate))
-        {
-            return string.Empty;
-        }
+
         return $"Neither condition satisfied: {left.GetFailureMessage(candidate)} or {right.GetFailureMessage(candidate)}";
     }
 }
