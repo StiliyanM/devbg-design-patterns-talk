@@ -1,18 +1,15 @@
-# Design Patterns Demo
+# Design Patterns I Actually Use: Practical Approaches for Real-World .NET Systems
 
-An educational .NET solution demonstrating design patterns in real-world scenarios.
+Code from my talk for the DEV.BG .NET user group on 13 January 2026. I presented in Bulgarian to 60+ developers.
 
-## Patterns
+The examples use payment processing to show where a pattern earns its place: choosing provider behaviour, composing processing steps, and keeping business rules readable. Each pattern has a before-and-after implementation so you can compare the cost of the change with what it buys you.
 
-### Strategy Pattern
+[Event and agenda](https://dev.bg/event/design-patterns-i-actually-use-practical-approaches-for-real-world-net-systems/) · [My LinkedIn recap](https://www.linkedin.com/feed/update/urn:li:activity:7419727600765476864/)
 
-See [Strategy/README.md](DesignPatternsDemo/Strategy/README.md) for business requirements and implementation details.
+## Code examples
 
-### Chain of Responsibility Pattern
+- [Strategy](DesignPatternsDemo/Strategy/README.md): select payment-provider behaviour without spreading provider checks through the calling code.
+- [Chain of Responsibility](DesignPatternsDemo/ChainOfResponsibility/README.md): split payment processing into steps you can compose and test separately.
+- [Specification](DesignPatternsDemo/Specification/README.md): give business rules names and combine them without copying conditions.
 
-See [ChainOfResponsibility/README.md](DesignPatternsDemo/ChainOfResponsibility/README.md) for business requirements and implementation details.
-
-### Specification Pattern
-
-See [Specification/README.md](DesignPatternsDemo/Specification/README.md) for business requirements and implementation details.
-
+The talk also covered CQRS and where MediatR fits. The code in this repository focuses on the 3 patterns above.
