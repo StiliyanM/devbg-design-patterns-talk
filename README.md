@@ -4,7 +4,7 @@ Code from my talk for the DEV.BG .NET user group on 13 January 2026. I presented
 
 The examples use payment processing to show where a pattern earns its place: choosing provider behaviour, composing processing steps, and keeping business rules readable. Each pattern has a before-and-after implementation so you can compare the cost of the change with what it buys you.
 
-[Event and agenda](https://dev.bg/event/design-patterns-i-actually-use-practical-approaches-for-real-world-net-systems/) · [My LinkedIn recap](https://www.linkedin.com/feed/update/urn:li:activity:7419727600765476864/)
+[Presentation (PDF)](design-patterns-i-actually-use.pdf) · [Event and agenda](https://dev.bg/event/design-patterns-i-actually-use-practical-approaches-for-real-world-net-systems/) · [My LinkedIn recap](https://www.linkedin.com/feed/update/urn:li:activity:7419727600765476864/)
 
 ## Code examples
 
